@@ -1,7 +1,8 @@
 .idea
 target
 *.iml
-
+# Add directory
+.db-dir
 # Compiled class file
 *.class
 
