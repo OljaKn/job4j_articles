@@ -2,7 +2,7 @@
 target
 *.iml
 # Add directory
-.db-dir
+db-dir
 # Compiled class file
 *.class
 
