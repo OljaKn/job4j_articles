@@ -19,11 +19,14 @@ public class Application {
     public static void main(String[] args) {
         Application app = new Application();
         var properties = loadProperties();
-        var wordStore = new WordStore(properties);
-        var articleStore = new ArticleStore(properties);
-        var articleGenerator = new RandomArticleGenerator();
-        var articleService = new SimpleArticleService(articleGenerator);
-        articleService.generate(wordStore, app.targetCount, articleStore);
+        try (var wordStore = new WordStore(properties);
+             var articleStore = new ArticleStore(properties)) {
+            var articleGenerator = new RandomArticleGenerator();
+            var articleService = new SimpleArticleService(articleGenerator);
+            articleService.generate(wordStore, app.targetCount, articleStore);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static Properties loadProperties() {
